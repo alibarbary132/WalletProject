@@ -14,10 +14,8 @@ CREATE TABLE transaction (
                              source_account_id       BIGINT REFERENCES account(id),
                              destination_account_id  BIGINT REFERENCES account(id),
                              status                  VARCHAR(20) NOT NULL,      -- PENDING, COMPLETED, FAILED
-                             idempotency_key         VARCHAR(255) NOT NULL,
-                             created_at              TIMESTAMP NOT NULL DEFAULT now(),
+                             created_at              TIMESTAMP NOT NULL DEFAULT now()
 
-                             CONSTRAINT uq_transaction_idempotency_key UNIQUE (idempotency_key)
 );
 
 -- Speeds up "has this account done any transactions" / history lookups

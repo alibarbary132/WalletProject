@@ -1,5 +1,6 @@
 package com.example.walletproject.service;
 
+import com.example.walletproject.dto.CreateAccountRequest;
 import com.example.walletproject.entity.Account;
 import com.example.walletproject.exception.AccountNotFoundException;
 import com.example.walletproject.respository.AccountRepo;
@@ -19,7 +20,7 @@ public class AccountService {
     }
 
     @Transactional
-    public Account getAccount(Long accountId) {
+    public Account getAccountById(Long accountId) {
         return accountRepo.findById(accountId).orElseThrow(()->new AccountNotFoundException(accountId));
     }
 
@@ -30,13 +31,22 @@ public class AccountService {
     }
 
     @Transactional
-    public List<Account> getAllAccounts(Long accountId) {
+    public List<Account> getAllAccounts() {
         return accountRepo.findAll();
     }
 
     @Transactional
-    public void  createAccount(Account account) {
-        accountRepo.save(account);
+    public Account  createAccount(CreateAccountRequest createAccountRequest) {
+        return accountRepo.save(new Account(createAccountRequest.ownerName()));
+    }
+
+    @Transactional
+    public Account  updateAccount(Account account) {
+        return accountRepo.save(account);
+    }
+    @Transactional
+    public List<Account>  updateAccounts(List<Account> accounts) {
+        return accountRepo.saveAll(accounts);
     }
 
     @Transactional

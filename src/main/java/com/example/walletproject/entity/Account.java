@@ -20,7 +20,7 @@ public class Account {
 
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
     protected Account() {
         // required by JPA
