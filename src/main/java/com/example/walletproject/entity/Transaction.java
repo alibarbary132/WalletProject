@@ -44,20 +44,17 @@ public class Transaction {
     @Column(name = "status", nullable = false, length = 20)
     private Status status;
 
-    @Column(name = "idempotency_key", nullable = false, unique = true)
-    private String idempotencyKey;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
 
     public Transaction(Type type, BigDecimal amount, Account sourceAccount,
-                       Account destinationAccount, String idempotencyKey) {
+                       Account destinationAccount) {
         this.type = type;
         this.amount = amount;
         this.sourceAccount = sourceAccount;
         this.destinationAccount = destinationAccount;
-        this.idempotencyKey = idempotencyKey;
         this.status = Status.PENDING;
     }
 
@@ -89,10 +86,6 @@ public class Transaction {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public String getIdempotencyKey() {
-        return idempotencyKey;
     }
 
     public LocalDateTime getCreatedAt() {

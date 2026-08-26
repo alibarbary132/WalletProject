@@ -8,5 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface TransactionRepo extends JpaRepository<Transaction,Long> {
-    Optional<Transaction> findByIdempotencyKey(Long key);
 }
