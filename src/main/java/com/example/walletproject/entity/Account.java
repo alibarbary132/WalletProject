@@ -15,6 +15,10 @@ public class Account {
     @Column(name = "owner_name", nullable = false)
     private String ownerName;
 
+    @Version
+    @Column(name = "version" , nullable = false)
+    private Long version;
+
     @Column(name = "balance", nullable = false, precision = 19, scale = 4)
     private BigDecimal balance = BigDecimal.ZERO;
 

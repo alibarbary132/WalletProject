@@ -51,6 +51,7 @@ public class TransactionService {
         accountService.updateAccount(sourceAccount);
         return transactionRepo.save(transaction);
     }
+    @Transactional
     public Transaction transfer(CreateTransactionRequest createTransactionRequest) {
         Account sourceAccount = accountService.getAccountById(createTransactionRequest.sourceAccount());
         if(sourceAccount.getBalance().compareTo(createTransactionRequest.amount())<1){
@@ -66,6 +67,7 @@ public class TransactionService {
         return transactionRepo.save(transaction);
     }
 
+@Transactional
     public List<Transaction> getAllTransactions() {
         return transactionRepo.findAll();
     }
