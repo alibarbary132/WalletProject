@@ -20,6 +20,14 @@ docker-compose up -d
 
 The app starts on `http://localhost:8080`. Flyway applies migrations automatically on startup.
 
+## Frontend
+
+A React (Vite) UI lives in [`frontend/`](frontend/). With the backend running:
+
+```bash
+cd frontend && npm install && npm run dev
+```
+
 ## API overview
 
 ### Auth
@@ -36,7 +44,6 @@ The app starts on `http://localhost:8080`. Flyway applies migrations automatical
 - `POST /transactions/accountId/{accountId}/withdraw` — withdraw from an account (rejected with `409` if funds are insufficient)
 - `POST /transactions/transfer` — move funds between two accounts, atomically
 
-A Postman collection is included under [`postman/`](postman/) with example requests for every endpoint.
 
 ## Design notes
 
